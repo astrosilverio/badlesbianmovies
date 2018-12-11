@@ -9,6 +9,11 @@ class Movie(object):
             return untweeted[0]
         return None
 
+    def get_last_tweeted_tweet_id(self):
+        tweeted = [t for t in self.tweets if t.tweet_id]
+        if tweeted:
+            return tweeted[-1].tweet_id
+        return None
 
 class Tweet(object):
 
