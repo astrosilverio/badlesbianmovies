@@ -10,7 +10,7 @@ CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
 
-print CONSUMER_KEY
+print(CONSUMER_KEY)
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -34,7 +34,7 @@ while True:
     if not next_tweet:
         current_movie = None
         break
-    print next_tweet.text
+    print(next_tweet.text)
 
     previous_tweet_id = current_movie.get_last_tweeted_tweet_id()
     try:
