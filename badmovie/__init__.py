@@ -1,0 +1,1 @@
+from badmovie.generate_movie import generate_movie

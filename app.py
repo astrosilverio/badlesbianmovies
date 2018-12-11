@@ -3,7 +3,7 @@ import time
 
 import tweepy
 
-from generate_movie import generate_movie
+from badmovie import generate_movie
 
 CONSUMER_KEY = os.environ['CONSUMER_KEY']
 CONSUMER_SECRET = os.environ['CONSUMER_SECRET']

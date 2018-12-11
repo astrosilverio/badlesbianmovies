@@ -1,11 +1,11 @@
 import random
 
 from models import Movie, Tweet
-from plots import instant_love, breakup_cycle, married_lady, closeted_homo, philosophical_discussion, surprise_death
-from sideplots import family_problems, wacky_mom, exes_get_together, troll_doll, sportsball, straight_friend, bi_friend
-from names import main_names, setting_names, incongruous_objects, bad_music
-from sexscenes import bad_sex_scenes
-from dialog import dialog
+from badmovie.plots import instant_love, breakup_cycle, married_lady, closeted_homo, philosophical_discussion, surprise_death
+from badmovie.sideplots import family_problems, wacky_mom, exes_get_together, troll_doll, sportsball, straight_friend, bi_friend
+from badmovie.names import main_names, setting_names, incongruous_objects, bad_music
+from badmovie.sexscenes import bad_sex_scenes
+from badmovie.dialog import dialog
 
 all_plots = [instant_love, breakup_cycle, married_lady]
 all_sideplots = [family_problems, wacky_mom, exes_get_together, troll_doll, sportsball, straight_friend, bi_friend]
