@@ -27,22 +27,21 @@ def send_tweet(tweet_text, previous_tweet_id=None):
         return api.update_status(tweet_text)
 
 
-if __name__ == '__main__':
-    while True:
-        if not current_movie:
-            current_movie = generate_movie()
-        next_tweet = current_movie.get_next_untweeted_tweet()
-        if not next_tweet:
-            current_movie = None
-            break
-        print next_tweet.text
+while True:
+    if not current_movie:
+        current_movie = generate_movie()
+    next_tweet = current_movie.get_next_untweeted_tweet()
+    if not next_tweet:
+        current_movie = None
+        break
+    print next_tweet.text
 
-        previous_tweet_id = current_movie.get_last_tweeted_tweet_id()
-        try:
-            status = send_tweet(next_tweet.text, previous_tweet_id=previous_tweet_id)
-        except tweepy.TweepError:
-            continue
-        else:
-            next_tweet.mark_as_tweeted(status.id)
+    previous_tweet_id = current_movie.get_last_tweeted_tweet_id()
+    try:
+        status = send_tweet(next_tweet.text, previous_tweet_id=previous_tweet_id)
+    except tweepy.TweepError:
+        continue
+    else:
+        next_tweet.mark_as_tweeted(status.id)
 
-        time.sleep(1)
+    time.sleep(1)
