@@ -39,7 +39,8 @@ while True:
     previous_tweet_id = current_movie.get_last_tweeted_tweet_id()
     try:
         status = send_tweet(next_tweet.text, previous_tweet_id=previous_tweet_id)
-    except tweepy.TweepError:
+    except tweepy.TweepError as e:
+        print(e)
         continue
     else:
         next_tweet.mark_as_tweeted(status.id)
