@@ -33,7 +33,8 @@ while True:
     next_tweet = current_movie.get_next_untweeted_tweet()
     if not next_tweet:
         current_movie = None
-        break
+        continue
+
     print(next_tweet.text)
 
     previous_tweet_id = current_movie.get_last_tweeted_tweet_id()
@@ -45,4 +46,4 @@ while True:
     else:
         next_tweet.mark_as_tweeted(status.id)
 
-    time.sleep(1)
+    time.sleep(21600)
