@@ -11,7 +11,6 @@ CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
 
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
@@ -45,6 +44,7 @@ while True:
     if not next_tweet:
         logger.info("Done with current movie, sleeping for 24 hours")
         current_movie = None
+        time.sleep(86400)
         continue
 
     logger.debug(next_tweet.text)
@@ -57,5 +57,5 @@ while True:
         continue
     else:
         next_tweet.mark_as_tweeted(status.id)
-
-    time.sleep(21600)
+        logger.info("%s tweets tweeted out of %s", current_movie.num_tweeted_tweets, len(current_movie.tweets))
+        time.sleep(30)
