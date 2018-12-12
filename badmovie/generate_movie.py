@@ -1,4 +1,5 @@
 import random
+from itertools import izip
 
 from models import Movie, Tweet
 from badmovie.plots import instant_love, breakup_cycle, married_lady, closeted_homo, philosophical_discussion, surprise_death
@@ -10,11 +11,62 @@ from badmovie.dialog import dialog
 all_plots = [instant_love, breakup_cycle, married_lady]
 all_sideplots = [family_problems, wacky_mom, exes_get_together, troll_doll, sportsball, straight_friend, bi_friend]
 
+MINUTE_GAPS = {
+    'small': (0,0),
+    'medium': (6,11),
+    'large': (12,14),
+}
+
+SECOND_GAPS = {
+    'small': (10, 59),
+}
+
 
 def interleave(*args):
     iters = sum(([iter(arg)]*len(arg) for arg in args), [])
     random.shuffle(iters)
     return map(next, iters)
+
+
+def generate_single_time(previous_time):
+    if previous_time == '00:00':
+        gap_length = 'small'
+    else:
+        gap_length = random.choice(['small', 'medium', 'large'])
+
+    previous_minutes, previous_seconds = previous_time.split(":")
+    previous_minutes = int(previous_minutes)
+    previous_seconds = int(previous_seconds)
+
+    extra_min = random.randint(MINUTE_GAPS[gap_length][0], MINUTE_GAPS[gap_length][1])
+    if gap_length == 'small':
+        extra_sec = random.randint(SECOND_GAPS[gap_length][0], SECOND_GAPS[gap_length][1])
+    else:
+        extra_sec = 0
+
+    new_minutes = previous_minutes + extra_min
+    if extra_sec == 0:
+        new_seconds = random.choice([0, 30])
+    else:
+        new_seconds = previous_seconds + extra_sec
+
+    if new_seconds >= 60:
+        new_minutes += 1
+        new_seconds = new_seconds % 60
+
+
+    return "{strmin}:{strsec}".format(
+        strmin=str(new_minutes).zfill(2),
+        strsec=str(new_seconds).zfill(2))
+
+
+def generate_timestamps(num_times):
+    time = "00:00"
+    timestamps = []
+    for _ in range(num_times):
+        time = generate_single_time(time)
+        timestamps.append(time)
+    return timestamps
 
 
 def generate_movie():
@@ -46,8 +98,10 @@ def generate_movie():
         sex_scenes.append(random.choice([extra_sex_scene, line_of_dialog]))
 
     raw_tweets = interleave(plot_choice, sideplot_choice, sex_scenes)
-
     text_tweets = [tweet.format(**all_modifiers) for tweet in raw_tweets]
-    tweets = [Tweet(text) for text in text_tweets]
+    timestamps = generate_timestamps(len(text_tweets))
+    timed_text_tweets = ["\t".join([time, text]) for time, text in izip(timestamps, text_tweets)]
+
+    tweets = [Tweet(text) for text in timed_text_tweets]
 
     return Movie(tweets)
