@@ -2,14 +2,12 @@ import random
 from itertools import izip
 
 from models import Movie, Tweet
-from badmovie.plots import instant_love, breakup_cycle, married_lady, closeted_homo, philosophical_discussion, surprise_death
-from badmovie.sideplots import family_problems, wacky_mom, exes_get_together, troll_doll, sportsball, straight_friend, bi_friend
-from badmovie.names import main_names, setting_names, incongruous_objects, bad_music
+from badmovie.plots import all_plots
+from badmovie.sideplots import all_sideplots
+from badmovie.names import main_names, setting_names, incongruous_objects, bad_music, titles, descriptions
 from badmovie.sexscenes import bad_sex_scenes
 from badmovie.dialog import dialog
 
-all_plots = [instant_love, breakup_cycle, married_lady]
-all_sideplots = [family_problems, wacky_mom, exes_get_together, troll_doll, sportsball, straight_friend, bi_friend]
 
 MINUTE_GAPS = {
     'small': (0,0),
@@ -20,7 +18,6 @@ MINUTE_GAPS = {
 SECOND_GAPS = {
     'small': (10, 59),
 }
-
 
 def interleave(*args):
     iters = sum(([iter(arg)]*len(arg) for arg in args), [])
@@ -102,6 +99,13 @@ def generate_movie():
     timestamps = generate_timestamps(len(text_tweets))
     timed_text_tweets = ["\t".join([time, text]) for time, text in izip(timestamps, text_tweets)]
 
-    tweets = [Tweet(text) for text in timed_text_tweets]
+    plot_point_tweets = [Tweet(text) for text in timed_text_tweets]
+
+    title = random.choice(titles)
+    description = random.choice(descriptions)
+    intro_word = random.choice(['Introducing', 'Presenting'])
+    intro_tweet_text = "{intro_word} {title}, {description}".format(intro_word=intro_word, title=title, description=description)
+    tweets = [Tweet(intro_tweet_text)]
+    tweets.extend(plot_point_tweets)
 
     return Movie(tweets)

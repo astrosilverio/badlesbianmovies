@@ -6,7 +6,6 @@ bar = [
     "the bar is empty, someone suggests that the bar should try theme nights",
 ]
 
-
 family_problems = [
     "{main2}'s mom sets her up with her friend's son",
     "{main2}'s mom sets her up with her friend's friend's son",
@@ -44,7 +43,7 @@ sportsball = [
     "everyone goes to the {setting} to play basketball",
     "clearly, no one has ever seen a game of basketball",
     "all basketball participants are sweating buckets except for {main2} who glistens",
-    "they have been playing basketball for hours and the high score is apparently 10"
+    "they have been playing basketball for hours and the high score is apparently 10",
 ]
 
 straight_friend = [
@@ -60,3 +59,5 @@ bi_friend = [
     "{main1}'s friend (man) comes out as bi, disappears from movie",
     "{main2}'s bi friend is dating a man, is now a lesbian dating a man",
 ]
+
+all_sideplots = [bar, family_problems, wacky_mom, exes_get_together, troll_doll, sportsball, straight_friend, bi_friend]
