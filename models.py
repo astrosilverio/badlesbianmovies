@@ -15,6 +15,11 @@ class Movie(object):
             return tweeted[-1].tweet_id
         return None
 
+    @property
+    def num_tweeted_tweets(self):
+        return len([t for t in self.tweets if t.tweet_id])
+
+
 class Tweet(object):
 
     def __init__(self, text):
