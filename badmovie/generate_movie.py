@@ -1,5 +1,4 @@
 import random
-from itertools import izip
 
 from models import Movie, Tweet
 from badmovie.plots import all_plots
@@ -97,7 +96,7 @@ def generate_movie():
     raw_tweets = interleave(plot_choice, sideplot_choice, sex_scenes)
     text_tweets = [tweet.format(**all_modifiers) for tweet in raw_tweets]
     timestamps = generate_timestamps(len(text_tweets))
-    timed_text_tweets = ["\t".join([time, text]) for time, text in izip(timestamps, text_tweets)]
+    timed_text_tweets = ["\t".join([time, text]) for time, text in zip(timestamps, text_tweets)]
 
     plot_point_tweets = [Tweet(text) for text in timed_text_tweets]
 
