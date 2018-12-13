@@ -4,6 +4,9 @@ descriptions = [
     "the shocking story of a forbidden affair",
     "a forbidden story of true love",
     "semi-autobiographical lesbian-themed romantic drama adapted from the book of a different name",
+    "a true story of forbidden love",
+    "a forbidden story of forbidden love",
+    "a trainwreck of a movie about a trainwreck of a romance",
 ]
 
 titles = [
