@@ -49,6 +49,13 @@ everything_relative = [
     "{main1} and {main2} have sex",
 ]
 
+soulemetry = [
+    "{main1} and {main2} flirt at the {setting}",
+    "{main1} and {main2} go to the love guru's matchmaking event",
+    "the love guru is their sperm donor",
+    "the love guru officiates their wedding",
+    "love guru: 'twin flames. soulemetry.'",
+]
 
 all_plots = [
     instant_love,
@@ -57,5 +64,5 @@ all_plots = [
     bar_girls,
     claire_of_the_moon,
     everything_relative,
-
+    soulemetry,
 ]
